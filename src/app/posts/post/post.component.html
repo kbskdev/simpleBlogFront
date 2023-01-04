@@ -1,9 +1,11 @@
-<p  style="width: 100%;text-align: center">post works!</p>
-<ul>
-  <li *ngFor="let comment of comments">Autor: {{comment.author}} | tekst: {{comment.text}}</li>
+<p *ngIf="data" style="width: 100%;text-align: center">{{data.text}}</p>
+
+<button (click)="changeComments()">Pokaz komentarze</button>
+<ul *ngIf="data && commentsVisible">
+  <li *ngFor="let comment of data.comments">Autor: {{comment.author}} | tekst: {{comment.text}}</li>
 </ul>
 
-<form #addCommentForm="ngForm" (ngSubmit)="addComment()">
+<form #addCommentForm="ngForm"(ngSubmit)="addComment()">
   <input placeholder="autor" name="author" type="text" [(ngModel)]="model.author"/>
   <input placeholder="tresc" name="text" type="text" [(ngModel)]="model.text"/>
   <button type="submit">Dodaj komentarz</button>

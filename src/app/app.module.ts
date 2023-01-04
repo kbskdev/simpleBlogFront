@@ -6,15 +6,22 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 
 import { PostComponent } from './posts/post/post.component';
+import { PostIconComponent } from './posts/post-icon/post-icon.component';
+import { PostsIconsContainerComponent } from './posts/posts-icons-container/posts-icons-container.component';
+import { AddPostsComponent } from './posts/add-posts/add-posts.component';
+import { RoutingModule} from "./routing/routing.module";
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    PostComponent
+    PostComponent,
+      PostIconComponent,
+      PostsIconsContainerComponent,
+      AddPostsComponent
   ],
     imports: [
-        BrowserModule, HttpClientModule, FormsModule
+        BrowserModule, HttpClientModule, FormsModule,RoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]

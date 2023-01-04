@@ -1,8 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import {Commentarz} from "./models/comment";
-import {HttpService} from "./services/http.service";
-import {NgForm} from "@angular/forms";
-import {Post} from "./models/post";
+
 
 
 @Component({
@@ -13,16 +10,14 @@ import {Post} from "./models/post";
 export class AppComponent implements OnInit{
   title = 'simpleBlogFront';
 
-  constructor(private api:HttpService) {
+  constructor() {
   }
 
-  posts:Post[]
+
 
 
   ngOnInit() {
-    this.api.getAllPosts().subscribe(data=>{
-      this.posts=data.data
-    })
+
   }
 
 }
