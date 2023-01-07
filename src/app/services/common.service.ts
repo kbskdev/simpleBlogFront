@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CommonService {
 
-  id:string
+  id:string = localStorage.getItem('lastPost')!
 
   constructor() { }
 }

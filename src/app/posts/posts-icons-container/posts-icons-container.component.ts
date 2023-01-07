@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {HttpService} from "../../services/http.service";
 import {PostIcon} from "../../models/post-icon";
 import {Router} from "@angular/router";
@@ -16,17 +16,31 @@ export class PostsIconsContainerComponent implements OnInit {
 
   posts:PostIcon[];
 
+  skipped:number = 0
   goToPost(id:string){
-
-    this.common.id = id
+    localStorage.setItem('lastPost',id)
+    console.log(localStorage.getItem('lastPost')+"post icon container")
     this.router.navigateByUrl("post")
   }
 
+  @HostListener('window:scroll', ['$event'])
+  loadNewPost(event:Event){
+
+    if(document.body.scrollHeight - window.innerHeight - window.scrollY<-10){
+      this.api.getLazyPost(this.skipped).subscribe(resData=>{
+        resData.data.forEach(value=>{this.posts.push(value)})
+        this.skipped+=6
+        console.log(this.skipped)
+      })
+
+    }
+  }
 
 
   ngOnInit() {
-    this.api.getPostIcon().subscribe(data=>{
+    this.api.getLazyPost(this.skipped).subscribe(data=>{
       this.posts=data.data
+      this.skipped+=6
     })
   }
 

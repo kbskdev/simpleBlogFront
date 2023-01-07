@@ -5,6 +5,7 @@ import { Commentarz} from "../models/comment";
 import {CommentsApiResponse} from "../models/comments-api-response";
 import {PostsApiResponse} from "../models/posts-api-response";
 import {HttpParams} from "@angular/common/http";
+import {Post} from "../models/post";
 
 
 @Injectable({
@@ -31,7 +32,15 @@ export class HttpService {
     return this.http.get<PostsApiResponse>(`http://localhost:8000/api/v1/posts/`)
   }
 
+  addPost(post:Post):Observable<PostsApiResponse>{
+    return this.http.post<PostsApiResponse>(`http://localhost:8000/api/v1/posts/`,post)
+  }
+
   getPostIcon():Observable<PostsApiResponse>{
     return this.http.get<PostsApiResponse>(`http://localhost:8000/api/v1/posts/icons/`)
+  }
+
+  getLazyPost(amount:number):Observable<PostsApiResponse>{
+    return this.http.get<PostsApiResponse>(`http://localhost:8000/api/v1/posts/lazyload/${amount}`)
   }
 }

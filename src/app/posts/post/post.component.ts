@@ -13,7 +13,7 @@ export class PostComponent implements OnInit{
 
   constructor(private api:HttpService,private common:CommonService) { }
 
-  id:string = this.common.id
+  id:string = localStorage.getItem('lastPost')!
 
   commentsVisible:boolean = false
 
@@ -30,6 +30,8 @@ export class PostComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.id = localStorage.getItem('lastPost')!
+    console.log(this.id)
     if(this.id) {
       this.api.getPost(this.id).subscribe(response => {
         this.data = response.data[0]

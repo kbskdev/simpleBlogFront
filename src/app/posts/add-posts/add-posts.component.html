@@ -1,1 +1,7 @@
-<p>add-posts works!</p>
+<form #addPostForm="ngForm" (ngSubmit)="addPost()">
+  <input placeholder="autor" name="author" type="text" [(ngModel)]="model.author"/>
+  <input placeholder="title" name="title" type="text" [(ngModel)]="model.title"/>
+
+  <input placeholder="text" name="text" type="text" [(ngModel)]="model.text"/>
+  <button type="submit">Dodaj post</button>
+</form>

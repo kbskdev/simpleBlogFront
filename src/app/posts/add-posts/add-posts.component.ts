@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from "../../services/http.service";
+import {Post} from "../../models/post";
 
 @Component({
   selector: 'app-add-posts',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPostsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api:HttpService) { }
+
+  model:Partial<Post> = {}
+
+  addPost(){
+    this.api.addPost(this.model as Post).subscribe()
+    console.log("wyslane")
+  }
 
   ngOnInit(): void {
   }
