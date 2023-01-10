@@ -30,7 +30,7 @@ export class PostsIconsContainerComponent implements OnInit {
       this.api.getLazyPost(this.skipped).subscribe(resData=>{
         resData.data.forEach(value=>{this.posts.push(value)})
         this.skipped+=6
-        console.log(this.skipped)
+
       })
 
     }

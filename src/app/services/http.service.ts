@@ -16,31 +16,33 @@ export class HttpService {
   constructor(private http:HttpClient) {
   }
 
+  urlDevelopment:string = `localhost:8000`
+  urlProduction:string = `kbskdev.com`
   getComments(id:string):Observable<CommentsApiResponse>{
-    return this.http.get<CommentsApiResponse>(`http://localhost:8000/api/v1/posts/comments/${id}`)
+    return this.http.get<CommentsApiResponse>(`http://${this.urlDevelopment}/api/v1/posts/comments/${id}`)
   }
 
   postComments(id:string,comment:Commentarz):Observable<Commentarz>{
-    return this.http.post<Commentarz>(`http://localhost:8000/api/v1/posts/comments/${id}`,comment)
+    return this.http.post<Commentarz>(`http://${this.urlDevelopment}/api/v1/posts/comments/${id}`,comment)
   }
 
   getPost(id:string):Observable<PostsApiResponse>{
-    return this.http.get<PostsApiResponse>(`http://localhost:8000/api/v1/posts/${id}`)
+    return this.http.get<PostsApiResponse>(`http://${this.urlDevelopment}/api/v1/posts/${id}`)
   }
 
   getAllPosts():Observable<PostsApiResponse>{
-    return this.http.get<PostsApiResponse>(`http://localhost:8000/api/v1/posts/`)
+    return this.http.get<PostsApiResponse>(`http://${this.urlDevelopment}/api/v1/posts/`)
   }
 
   addPost(post:Post):Observable<PostsApiResponse>{
-    return this.http.post<PostsApiResponse>(`http://localhost:8000/api/v1/posts/`,post)
+    return this.http.post<PostsApiResponse>(`http://${this.urlDevelopment}/api/v1/posts/`,post)
   }
 
   getPostIcon():Observable<PostsApiResponse>{
-    return this.http.get<PostsApiResponse>(`http://localhost:8000/api/v1/posts/icons/`)
+    return this.http.get<PostsApiResponse>(`http://${this.urlDevelopment}/api/v1/posts/icons/`)
   }
 
   getLazyPost(amount:number):Observable<PostsApiResponse>{
-    return this.http.get<PostsApiResponse>(`http://localhost:8000/api/v1/posts/lazyload/${amount}`)
+    return this.http.get<PostsApiResponse>(`http://${this.urlDevelopment}/api/v1/posts/lazyload/${amount}`)
   }
 }
